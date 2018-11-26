@@ -55,7 +55,7 @@ void				v_choose_error(t_v_validation *valid);
 int					v_is_digit_arg(char *valid, int sign);
 
 void				v_put_validation_error(int error_code,
-										   t_v_validation *valid);
+											t_v_validation *valid);
 char				v_ft_is_whitespace_line(const char *str);
 
 void				v_get_error_string(t_v_validation *valid);

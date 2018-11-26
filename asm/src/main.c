@@ -10,9 +10,6 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-// TODO: {zjmp	%4902343, r1 == Syntax error at token [TOKEN][004:015] INDIRECT ""} dich;
-// TODO: Syntax error - unexpected end of input (Perhaps you forgot to end with a newline ?)
-
 #include "../inc/asm.h"
 #include "../inc/interpretation.h"
 #include "../inc/collect_info.h"

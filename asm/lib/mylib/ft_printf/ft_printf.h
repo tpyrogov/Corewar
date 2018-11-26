@@ -6,16 +6,18 @@
 /*   By: achernys <achernys@student.unit.ua>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/28 18:12:38 by achernys          #+#    #+#             */
-/*   Updated: 2018/07/25 13:37:25 by achernys         ###   ########.fr       */
+/*   Updated: 2018/05/10 13:55:59 by achernys         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FT_PRINTF_H
 # define FT_PRINTF_H
 
-# include "libft/libft.h"
+# include "../libft/libft.h"
 # include <stdarg.h>
 # include <math.h>
+
+# define ABS(x) x < 0 ? -x : x
 
 /*
 ** STRUCTURES

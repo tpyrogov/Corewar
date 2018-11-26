@@ -60,8 +60,6 @@ static int		getoutstr(const char *format, t_argptrsave *structarg)
 	{
 		if (format[i] == '{')
 			set_color(&(structarg->len), &i, &lencurpart, format);
-		if (format[i] == 0)
-			break ;
 		if (format[i] == '%' && format[i + 1] != 0)
 		{
 			structarg->len += write(1, &format[i - lencurpart], lencurpart);

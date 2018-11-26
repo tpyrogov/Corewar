@@ -39,23 +39,23 @@ void		v_choose_error(t_v_validation *valid)
 static void	v_syntax_error_con(int error_code, t_v_validation *valid)
 {
 	if (error_code == SYNTAX_DIRECT_LABEL)
-		ft_printf("{red}DIRECT_LABEL \"%s\"{eoc}", valid->buff);
+		ft_printf("DIRECT_LABEL \"%s\"", valid->buff);
 	else if (error_code == SYNTAX_INDIRECT)
-		ft_printf("{red}INDIRECT \"%s\"{eoc}", valid->buff);
+		ft_printf("INDIRECT \"%s\"", valid->buff);
 	else if (error_code == SYNTAX_REGISTER)
-		ft_printf("{red}REGISTER \"%s\"{eoc}", valid->buff);
+		ft_printf("REGISTER \"%s\"", valid->buff);
 	else if (error_code == SYNTAX_COMMAND_NAME)
-		ft_printf("{red}COMMAND_NAME \"%s\"{eoc}", valid->buff);
+		ft_printf("COMMAND_NAME \"%s\"", valid->buff);
 	else if (error_code == SYNTAX_LABEL)
-		ft_printf("{red}LABEL \"%s\"{eoc}", valid->buff);
+		ft_printf("LABEL \"%s\"", valid->buff);
 	else if (error_code == SYNTAX_SEPARATOR)
-		ft_printf("{red}SEPARATOR \",\"{eoc}");
+		ft_printf("SEPARATOR \",\"");
 	else if (error_code == NO_NAME)
-		ft_printf("{red}NO_NAME{eoc}");
+		ft_printf("NO_NAME");
 	else if (error_code == NO_COMMENT)
-		ft_printf("{red}NO_COMMENT{eoc}");
+		ft_printf("NO_COMMENT");
 	else if (error_code == SYNTAX_DIRECT)
-		ft_printf("{red}DIRECT \"%s\"{eoc}", valid->buff);
+		ft_printf("DIRECT \"%s\"", valid->buff);
 }
 
 void		v_check_eof(t_v_validation *valid, int error_code)
@@ -63,21 +63,21 @@ void		v_check_eof(t_v_validation *valid, int error_code)
 	if (error_code == SYNTAX_END)
 	{
 		ft_strdel(&valid->buff);
-		ft_printf("{red}Syntax error at token [TOKEN][%03d:%03d] {eoc}",
+		ft_printf("Syntax error at token [TOKEN][%03d:%03d] ",
 				valid->y_curs + 1, valid->x_curs + 1);
-		ft_printf("{red}END \"%s\"{eoc}", valid->buff);
+		ft_printf("END \"%s\"", valid->buff);
 	}
 	else
 	{
-		ft_printf("{red}Syntax error at token [TOKEN][%03d:%03d] {eoc}",
+		ft_printf("Syntax error at token [TOKEN][%03d:%03d] ",
 				valid->y_curs + 1, valid->x_curs + 1);
-		if (get_next_line(valid->fd, &valid->buff) == 0)
+		if (get_next_line(valid->fd, &valid->buff) <= 0)
 		{
 			ft_strdel(&valid->buff);
-			ft_printf("{red}END \"%s\"{eoc}", valid->buff);
+			ft_printf("END \"%s\"", valid->buff);
 		}
 		else
-			ft_printf("{red}ENDLINE{eoc}");
+			ft_printf("ENDLINE");
 	}
 }
 
@@ -85,22 +85,24 @@ void		v_syntax_error(int error_code, t_v_validation *valid)
 {
 	if (error_code == NO_NEW_LINE)
 	{
-		ft_printf("{yellow}Syntax error - unexpected end of input {eoc}");
-		ft_printf("{yellow}(Perhaps you forgot to end with a newline ?){eoc}");
+		ft_printf("{yellow}Syntax error - unexpected end of input ");
+		ft_printf("{yellow}(Perhaps you forgot to end with a newline ?)");
 	}
 	else if (error_code == SYNTAX_ENDLINE || error_code == SYNTAX_END)
+	{
 		v_check_eof(valid, error_code);
+	}
 	else
 	{
 		v_print_index_error(valid->buff, valid->x_curs);
 		v_pass_whitespaces(valid);
 		v_get_error_string(valid);
-		ft_printf("{red}Syntax error at token [TOKEN][%03d:%03d] {eoc}",
+		ft_printf("Syntax error at token [TOKEN][%03d:%03d] ",
 				valid->y_curs + 1, valid->x_curs + 1);
 		if (error_code == SYNTAX_COMMAND_COMMENT)
-			ft_printf("{red}COMMAND_COMMENT %s{eoc}", valid->buff);
+			ft_printf("COMMAND_COMMENT %s", valid->buff);
 		else if (error_code == SYNTAX_INSTRUCT)
-			ft_printf("{red}INSTRUCTION \"%s\"{eoc}", valid->buff);
+			ft_printf("INSTRUCTION \"%s\"", valid->buff);
 		v_syntax_error_con(error_code, valid);
 	}
 }

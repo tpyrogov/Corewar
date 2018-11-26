@@ -6,17 +6,32 @@
 /*   By: achernys <achernys@student.unit.ua>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/13 11:32:39 by achernys          #+#    #+#             */
-/*   Updated: 2018/09/06 21:17:31 by achernys         ###   ########.fr       */
+/*   Updated: 2018/03/24 21:55:35 by achernys         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
+/*
+** 0-1		int
+** 2-3		long int
+** 4		int *
+** 5		void *
+** 6-9		unsigned int
+** 10-11	unsigned long int
+** 12		char
+** 13		wchar_t
+** 14		char *
+** 15		wchar_t *
+** 16-23	double
+** extension
+*/
+
 char	*getflagsstr(void)
 {
 	char	*types_str;
 
-	types_str = (char *)ft_memalloc(sizeof(char) * 7);
+	types_str = (char *)ft_memalloc(sizeof(*types_str) * 7);
 	return (ft_strcpy(types_str, "# +-.*"));
 }
 
@@ -24,7 +39,7 @@ char	*getexpansionstr(void)
 {
 	char	*types_str;
 
-	types_str = (char *)ft_memalloc(sizeof(char) * 6);
+	types_str = (char *)ft_memalloc(sizeof(*types_str) * 6);
 	return (ft_strcpy(types_str, "lLhzj"));
 }
 
@@ -32,7 +47,7 @@ char	*gettypesstr(void)
 {
 	char	*types_str;
 
-	types_str = (char *)ft_memalloc(sizeof(char) * 28);
+	types_str = (char *)ft_memalloc(sizeof(*types_str) * 28);
 	return (ft_strcpy(types_str, "idDnpuoxXUOcCsSfegaFEGA%br"));
 }
 
