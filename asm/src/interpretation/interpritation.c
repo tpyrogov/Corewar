@@ -110,7 +110,7 @@ void	interpretation(t_public_struct *public_struct)
 	i_write_missing_params(i_data);
 	i_write_header_code(i_data, champ_size);
 	file_name = i_get_file_name(public_struct->file_name);
-	if ((i_data->fd = open(file_name, O_CREAT | O_WRONLY | O_TRUNC)) == -1)
+	if ((i_data->fd = open(file_name, O_CREAT | O_WRONLY | O_TRUNC, 777)) == -1)
 		exit(CREATE_FILE_ERR);
 	i_write_data_in_file(i_data, champ_size);
 	ft_printf("{green}Writing output program to %s{eoc}\n", file_name);
